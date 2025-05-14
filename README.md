@@ -11,7 +11,7 @@
 ### 1.1 問題設定與環境
 
 * **環境**：4×4 Gridworld，採用 static mode，所有目標（Goal）、陷阱（Pit）、牆壁（Wall）位置不變。
-* **狀態維度**：將 $4	imes4	imes4$ 的 one-hot 表示攤平成長度 64 的向量。
+* **狀態維度**：將 4×4×4 的 one-hot 表示攤平成長度 64 的向量。
 * **動作空間**：4 種方向（up, down, left, right），對應輸出層寬度為 4。
 
 ### 1.2 網路架構
@@ -147,7 +147,7 @@ next_q = Q(s'; θ_target)[next_actions]
 y = r + γ · next_q
 ```
 
-* **選擇** (action selection) 與 **評估** (action evaluation) 分屬不同的網路參數，$θ_{online}$ 與 $θ_{target}$ 互相獨立。
+* **選擇** (action selection) 與 **評估** (action evaluation) 分屬不同的網路參數， $θ_{online}$  與 $θ_{target}$ 互相獨立。
 
 ### 2.2 改良效益
 
@@ -177,7 +177,7 @@ y = r + γ · next_q
 
 * **Value-stream** $V(s)$：估計狀態整體價值
 * **Advantage-stream** $A(s,a)$：估計各動作相對於平均水平的增益
-* **融合**：$Q = V + A - 	frac{1}{|A|}\sum A$，確保唯一性
+* **融合**： $Q = V + A - 	frac{1}{|A|}\sum A$ ，確保唯一性
 
 ### 3.2 改良效益
 
@@ -279,6 +279,7 @@ y = r + γ · next_q
 * **訓練穩定性**：損失曲線振盪減少，梯度爆炸機率下降。
 * **收斂速度**：初期高 lr + scheduler 衰減可快速降損並平滑收斂。
 * **泛化能力**：優先回放將關鍵 transition 強化訓練，使策略更能適應多樣化佈局。
+![52e0d272-f7f6-4afe-9997-86e68402f3a6](https://github.com/user-attachments/assets/1bb342a8-b78e-43d1-bdae-b850cbd49925)
 
 ---
 
